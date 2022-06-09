@@ -61,3 +61,38 @@ public:
     }
     
 };
+
+TC- O(n*2)
+SC- O(4)=constant 
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int n = prices.size();
+        // vector<vector<int>>dp(n+1, vector<int>(2,0));
+        // dp[n][1]=dp[n][0]=0;
+        vector<int>ahead(2,0),cur(2,0);
+        
+        for(int i=n-1 ; i>=0 ; i--){
+            for(int canbuy=0 ; canbuy<=1 ; canbuy++){
+                 int profit = 0;
+
+                if(canbuy ==1 ){
+                    profit= max (-prices[i]+ ahead[0],ahead[1]);
+
+                }
+                else {
+                    profit = max(prices[i] +ahead[1], ahead[0]);
+                }
+                 cur[canbuy]= profit;
+            }
+            ahead=cur;
+        }
+        
+        
+        
+        
+        return ahead[1];
+    }
+    
+};
