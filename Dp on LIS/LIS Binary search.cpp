@@ -1,4 +1,5 @@
-
+tc= nlogn;
+sc= O(n)
 
 int Solution::lis(const vector<int> &nums) {
     
